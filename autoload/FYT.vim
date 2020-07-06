@@ -4,7 +4,12 @@
 " License:      This file is distributed under the MIT License
 
 " Initialization {{{
-if exists('g:autoloaded_FYT_vim') || version < 800
+if exists('g:autoloaded_FYT_vim')
+    finish
+endif
+
+" Making sure we have TextYankPost event and matchdelete accepting a window ID
+if ( !has('nvim') && version < 802 )
     finish
 endif
 
@@ -20,11 +25,7 @@ function! s:DeleteTemporaryMatch(timerId)
         let matchID = match[1]
 
         try
-            if has('nvim')
-                call matchdelete(matchID, windowID)
-            else
-                call clearmatches(windowID)
-            endif
+            call matchdelete(matchID, windowID)
         endtry
     endwhile
 endfunction

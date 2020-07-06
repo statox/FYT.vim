@@ -4,7 +4,13 @@
 " License:      This file is distributed under the MIT License
 
 " Initialization {{{
-if exists('g:loaded_FYT_vim') || version < 800
+if exists('g:loaded_FYT_vim')
+    finish
+endif
+
+" Making sure we have TextYankPost event and matchdelete accepting a window ID
+if ( !has('nvim') && version < 802 )
+    echoerr "FYT.vim doesn't support Vim < 8.2"
     finish
 endif
 
