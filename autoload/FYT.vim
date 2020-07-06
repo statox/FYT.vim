@@ -4,14 +4,18 @@
 " License:      This file is distributed under the MIT License
 
 " Initialization {{{
-if exists('g:loaded_flash_yanked_text') || version < 800
+if exists('g:autoloaded_FYT_vim') || version < 800
     finish
 endif
+
+let g:autoloaded_FYT_vim = 1
+let s:save_cpo = &cpo
+set cpo&vim
 "}}}
 " functions {{{
 function! s:DeleteTemporaryMatch(timerId)
-    while !empty(g:yankedTextMatches)
-        let match = remove(g:yankedTextMatches, 0)
+    while !empty(s:yankedTextMatches)
+        let match = remove(s:yankedTextMatches, 0)
         let windowID = match[0]
         let matchID = match[1]
 
@@ -22,16 +26,15 @@ function! s:DeleteTemporaryMatch(timerId)
 endfunction
 
 function! FYT#FlashYankedText()
-    if (!exists('g:yankedTextMatches'))
-        let g:yankedTextMatches = []
+    if (!exists('s:yankedTextMatches'))
+        let s:yankedTextMatches = []
     endif
 
-    " let matchId = matchadd('IncSearch', ".\\%>'\\[\\_.*\\%<']..")
-    let matchId = matchadd('IncSearch', "\\%'\\[\\_.*\\%']")
+    let matchId = matchadd('IncSearch', ".\\%>'\\[\\_.*\\%<']..")
     let window = winnr()
 
-    call add(g:yankedTextMatches, [window, matchId])
-    call timer_start(500, '<SID>DeleteTemporaryMatch')
+    call add(s:yankedTextMatches, [window, matchId])
+    call timer_start(500, function('<SID>DeleteTemporaryMatch'))
 endfunction
 " }}}
 " Reset {{{

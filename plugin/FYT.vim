@@ -4,15 +4,15 @@
 " License:      This file is distributed under the MIT License
 
 " Initialization {{{
-if exists('g:loaded_flash_yanked_text') || version < 800
+if exists('g:loaded_FYT_vim') || version < 800
     finish
 endif
 
-let g:loaded_god_vim = 1
+let g:loaded_FYT_vim = 1
 let s:save_cpo = &cpo
 set cpo&vim
 " }}}
-" Command {{{
+" Autocommand {{{
 augroup highlightYankedText
     autocmd!
     autocmd TextYankPost * call FYT#FlashYankedText()
