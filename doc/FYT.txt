@@ -1,0 +1,23 @@
+*FYT.vim* Flash Yanked Text: Get a visual clue of the text you just yanked
+
+FYT.vim                                                             *FYT.txt*
+1. FYT configuration                                      |FYT-configuration|
+2. About                                                          |FYT-about|
+
+==============================================================================
+1. Configuration                                          *FYT-configuration*
+
+You can configure how long you want the flash to last by setting the following
+variable. The time is in milliseconds and defaults to 500:
+>
+    let FYT_flash_time = 1000
+<
+
+==============================================================================
+2. About                                                          *FYT-about*
+
+If you're curious about why I did this plugin or how I did it have a read here:
+
+https://www.statox.fr/posts/vim/vim_flash_yanked_text/
+
+vim:tw=75:ts=8:ft=help:norl:
