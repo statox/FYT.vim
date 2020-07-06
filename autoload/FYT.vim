@@ -32,9 +32,10 @@ function! FYT#FlashYankedText()
 
     let matchId = matchadd('IncSearch', ".\\%>'\\[\\_.*\\%<']..")
     let window = winnr()
+    let flashTime =  get(g:, 'FYT_flash_time', 500)
 
     call add(s:yankedTextMatches, [window, matchId])
-    call timer_start(500, function('<SID>DeleteTemporaryMatch'))
+    call timer_start(flashTime, function('<SID>DeleteTemporaryMatch'))
 endfunction
 " }}}
 " Reset {{{
