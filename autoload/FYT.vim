@@ -20,7 +20,11 @@ function! s:DeleteTemporaryMatch(timerId)
         let matchID = match[1]
 
         try
-            call matchdelete(matchID, windowID)
+            if has('nvim')
+                call matchdelete(matchID, windowID)
+            else
+                call clearmatches(windowID)
+            endif
         endtry
     endwhile
 endfunction
