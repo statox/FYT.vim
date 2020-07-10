@@ -8,7 +8,7 @@ A very simple plugin which gives you a visual clue of the text you just yanked.
 
 You can configure how long you want the flash to last by setting the following variable in your `.vimrc`. The time is in milliseconds and defaults to 500:
 
-    let FYT_flash_time = 1000
+    let g:FYT_flash_time = 100
 
 You can configure the highlighting group used to highlight yanked text by
 setting the following variable. If not set the default value is `'IncSearch'`.
