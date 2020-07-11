@@ -44,17 +44,16 @@ function! FYT#FlashYankedText(event)
 
     " Handle case of visual block using one match by line
     if (len(a:event.regtype) > 0 && a:event.regtype[0] == "\<C-V>")
-        let lineStart = getpos("'<")[1]
-        let lineStop = getpos("'>")[1]
-        let columnStart = getpos("'<")[2]
-        let columnStop = getpos("'>")[2]
+        let lineStart = line("'<")
+        let lineStop = line("'>")
+        let columnStart = col("'<")
+        let columnStop = col("'>")
 
         " For each line in the block selection create a pattern using the first and last column
         " The pattern looks like this:
         "   \%Xl\%Yc.*\%Zc
         " Where X is the line, Y the first column and Z the last column
         for line in range(lineStart, lineStop)
-            echom "line " . line
             let matchId = matchadd(get(g:, 'FYT_highlight_group', 'IncSearch'), "\\%" . line . "l\\%" . columnStart . "c.*\\%" . columnStop . "c")
             call add(s:yankedTextMatches, [window, matchId])
         endfor
