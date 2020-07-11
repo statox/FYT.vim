@@ -21,7 +21,7 @@ set cpo&vim
 " Autocommand {{{
 augroup highlightYankedText
     autocmd!
-    autocmd TextYankPost * call FYT#FlashYankedText()
+    autocmd TextYankPost * call FYT#FlashYankedText(deepcopy(v:event))
 augroup END
 " }}}
 " Reset {{{
