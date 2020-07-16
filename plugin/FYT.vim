@@ -22,6 +22,7 @@ set cpo&vim
 augroup highlightYankedText
     autocmd!
     autocmd TextYankPost * call FYT#FlashYankedText(deepcopy(v:event))
+    autocmd WinLeave * call FYT#DeleteMatchesInCurrentWindow()
 augroup END
 " }}}
 " Reset {{{

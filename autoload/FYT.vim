@@ -37,6 +37,21 @@ function! s:DeleteTemporaryMatch(timerId)
     endwhile
 endfunction
 
+" Used to clean up when leaving a window before the timer were executed
+function! FYT#DeleteMatchesInCurrentWindow()
+    if (!exists('s:yankedTextMatches'))
+        return
+    endif
+
+    for matchToRemove in s:yankedTextMatches
+        if (matchToRemove[0] == winnr())
+            call matchdelete(matchToRemove[1])
+        endif
+    endfor
+
+    call filter(s:yankedTextMatches, 'v:val[1] == winnr()')
+endfunction
+
 function! FYT#FlashYankedText(event)
     " Don't highlight if the last command was not a yank
     if (a:event.operator != 'y')
