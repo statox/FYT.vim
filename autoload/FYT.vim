@@ -26,6 +26,13 @@ function! s:DeleteTemporaryMatch(timerId)
 
         try
             call matchdelete(matchID, windowID)
+        catch
+            try
+                call matchdelete(matchID)
+            catch
+                " Yeah this is a terrible hack to handle older version of vim/neovim
+                " which don't take a windowID as argument of matchdelete
+            endtry
         endtry
     endwhile
 endfunction
