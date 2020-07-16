@@ -15,6 +15,10 @@ setting the following variable. If not set the default value is `'IncSearch'`.
 
     let g:FYT_highlight_group = 'MyOwnHighlightGroup'
 
+# Alternative
+
+When I wrote this plugin I didn't know [machakann/vim-highlightedyank](https://github.com/machakann/vim-highlightedyank) existed. If FYT doesn't work for you, you probably want to consider using this one instead.
+
 # About
 
 If you're curious about why I did this plugin or how I did it have a read [here](https://www.statox.fr/posts/vim/vim_flash_yanked_text/)
