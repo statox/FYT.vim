@@ -79,6 +79,9 @@ function! FYT#FlashYankedText(event)
             let matchId = matchadd(get(g:, 'FYT_highlight_group', 'IncSearch'), "\\%" . line . "l\\%" . columnStart . "c.*\\%" . columnStop . "c")
             call add(s:yankedTextMatches, [window, matchId])
         endfor
+    elseif a:event.visual " Handle clipboard=autoselect, see https://github.com/statox/FYT.vim/issues/6
+        let matchId = matchadd(get(g:, 'FYT_highlight_group', 'IncSearch'), ".\\%>'<\\_.*\\%<'>..")
+        call add(s:yankedTextMatches, [window, matchId])
     else " Other visual types
         let matchId = matchadd(get(g:, 'FYT_highlight_group', 'IncSearch'), ".\\%>'\\[\\_.*\\%<']..")
         call add(s:yankedTextMatches, [window, matchId])
